@@ -7,10 +7,10 @@ const handlers = {
     loading: false
   }),
   [t.SET_LOADING]: state => ({ ...state, loading: true }),
-  DAFAULT: state => state
+  DEFAULT: state => state
 };
 
 export const carsApiReducer = (state, action) => {
-  const handler = handlers[action.type] || handlers.DAFAULT;
+  const handler = handlers[action.type] || handlers.DEFAULT;
   return handler(state, action);
 };
