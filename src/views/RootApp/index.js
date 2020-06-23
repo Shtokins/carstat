@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-import { MainChart } from "../MainChart";
+import { MainChartBlock } from "../MainChartBlock";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -14,8 +14,8 @@ const { Header, Sider, Content } = Layout;
 export const RootApp = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Layout style={{ minHeight: "100vh" }}>
+      <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1" icon={<UserOutlined />}>
@@ -29,9 +29,9 @@ export const RootApp = () => {
           </Menu.Item>
         </Menu>
       </Sider>
-      <div className="container">
-        <MainChart />
+      <div className="dashboard container">
+        <MainChartBlock />
       </div>
-    </>
+    </Layout>
   );
 };
