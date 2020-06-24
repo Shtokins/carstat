@@ -5,7 +5,7 @@ const defaultChartDataset = color => ({
   data: []
 });
 
-const defaultChartOptions = color => ({
+const defaultChartOptions = () => ({
   backgroundColor: "blue",
   animation: { easing: "easeOutQuad" },
   onResize: null,
@@ -13,8 +13,17 @@ const defaultChartOptions = color => ({
   responsive: true
 });
 
-const primaryColor = "#169834";
-const secondaryColor = "#EF3618";
+const chartColors = [
+  "#FF645D",
+  "#FFD35B",
+  "#71D34D",
+  "#00B4C6",
+  "#2370EF",
+  "#AE43BA"
+];
+
+const primaryColor = "#2370EF";
+const secondaryColor = "#AE43BA";
 
 export const fetchBarChartData = ({
   data,
@@ -51,7 +60,16 @@ export const fetchBarChartData = ({
     showSecondary
   });
 
-  const barChartOptions = { ...defaultChartOptions, scales };
+  const barChartOptions = {
+    ...defaultChartOptions,
+    scales,
+    title: {
+      display: true,
+      position: "top",
+      text: yearPrimary,
+      fontSize: 18
+    }
+  };
   return { barChartOptions, barChartData: { labels, datasets } };
 };
 
@@ -97,5 +115,54 @@ const getBarChartScales = ({
         labelString: comparatorSecondary.toUpperCase()
       }
     });
+  return { xAxes, yAxes };
+};
+
+export const fetchLineChartData = ({ data, comparatorPrimary }) => {
+  let labels;
+
+  const datasets = [];
+
+  data.forEach((company, index) => {
+    const { brand } = company;
+    if (!index) labels = Object.keys(company.sales);
+    datasets.push({
+      ...defaultChartDataset(chartColors[index]),
+      fill: false,
+      label: brand,
+      data: Object.values(company[comparatorPrimary])
+    });
+  });
+
+  const scales = getLineChartScales({
+    comparatorPrimary
+  });
+
+  const lineChartOptions = { ...defaultChartOptions, scales };
+  return { lineChartOptions, lineChartData: { labels, datasets } };
+};
+
+const getLineChartScales = ({ comparatorPrimary }) => {
+  const xAxes = [{ gridLines: { display: false } }];
+  const yAxes = [
+    {
+      id: comparatorPrimary,
+      position: "left",
+      fontStyle: "bold",
+      fontColor: primaryColor,
+      ticks: {
+        fontColor: primaryColor
+      },
+
+      scaleLabel: {
+        display: true,
+        fontColor: primaryColor,
+        fontSize: 14,
+        fontStyle: "bold",
+        labelString: comparatorPrimary.toUpperCase()
+      }
+    }
+  ];
+
   return { xAxes, yAxes };
 };

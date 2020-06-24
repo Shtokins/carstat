@@ -14,7 +14,7 @@ const { Header, Sider, Content } = Layout;
 export const RootApp = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "100vh", backgroundColor: "#f2f2f2" }}>
       <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
         <div className="logo" />
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
