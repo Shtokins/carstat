@@ -13,9 +13,11 @@ const initialChartSettings = {
 };
 
 export const MainChart = ({ cars }) => {
+  const defaultBrand = cars?.[0]?.brand ?? "Toyota";
   const [blockMode, setBlockMode] = useState("bar");
   const [chartSettings, setCharsSettings] = useState(initialChartSettings);
   const [chartData, setChartData] = useState(null);
+  const [additionalBrand, setAdditionalBrand] = useState(defaultBrand);
 
   useEffect(() => {
     const {
@@ -60,6 +62,7 @@ export const MainChart = ({ cars }) => {
           <BarChart
             data={chartData.barChartData}
             options={chartData.barChartOptions}
+            selectBrand={setAdditionalBrand}
           />
         )}
         {chartData && blockMode === "line" && (
@@ -71,7 +74,7 @@ export const MainChart = ({ cars }) => {
         {blockMode === "table" && <div>Table here</div>}
       </div>
       <AdditionalCharts
-        brand="Toyota"
+        brand={additionalBrand}
         yearPrimary={chartSettings.yearPrimary}
       />
     </div>

@@ -73,7 +73,12 @@ export const fetchBarChartData = ({
   return { barChartOptions, barChartData: { labels, datasets } };
 };
 
-const getBarChartScales = ({ kpiPrimary, kpiAdditional, showAdditional }) => {
+const getBarChartScales = ({
+  kpiPrimary,
+  kpiAdditional,
+  showAdditional,
+  removeY
+}) => {
   const xAxes = [{ gridLines: { display: false } }];
   const yAxes = [
     {
@@ -82,11 +87,11 @@ const getBarChartScales = ({ kpiPrimary, kpiAdditional, showAdditional }) => {
       fontStyle: "bold",
       fontColor: primaryColor,
       ticks: {
-        fontColor: primaryColor
+        fontColor: primaryColor,
+        display: !removeY
       },
-
       scaleLabel: {
-        display: true,
+        display: !removeY,
         fontColor: primaryColor,
         fontSize: 14,
         fontStyle: "bold",
@@ -101,10 +106,11 @@ const getBarChartScales = ({ kpiPrimary, kpiAdditional, showAdditional }) => {
       fontStyle: "bold",
       fontColor: secondaryColor,
       ticks: {
-        fontColor: secondaryColor
+        fontColor: secondaryColor,
+        display: !removeY
       },
       scaleLabel: {
-        display: true,
+        display: !removeY,
         fontColor: secondaryColor,
         fontSize: 14,
         fontStyle: "bold",
@@ -138,7 +144,7 @@ export const fetchLineChartData = ({ data, kpiPrimary }) => {
   return { lineChartOptions, lineChartData: { labels, datasets } };
 };
 
-const getLineChartScales = ({ kpiPrimary }) => {
+const getLineChartScales = ({ kpiPrimary, removeY }) => {
   const xAxes = [{ gridLines: { display: false } }];
   const yAxes = [
     {
@@ -147,11 +153,11 @@ const getLineChartScales = ({ kpiPrimary }) => {
       fontStyle: "bold",
       fontColor: primaryColor,
       ticks: {
-        fontColor: primaryColor
+        fontColor: primaryColor,
+        display: !removeY
       },
-
       scaleLabel: {
-        display: true,
+        display: !removeY,
         fontColor: primaryColor,
         fontSize: 14,
         fontStyle: "bold",
@@ -184,7 +190,8 @@ export const fetchAdditionalChartData = ({ data, year, brand }) => {
       line.push(sales[key]);
       bar.push(revenue[key]);
     });
-    pie.push([...[shares[year], 100 - shares[year]]]);
+    pie.push(shares[year]);
+    pie.push(100 - shares[year]);
   }
   const lineData = {
     labels,
@@ -211,21 +218,47 @@ export const fetchAdditionalChartData = ({ data, year, brand }) => {
     labels: [brand, "Others"],
     datasets: [
       {
-        data: pie,
-        backgroundColor: chartColors[2],
-        label: brand
+        data: [...pie],
+        backgroundColor: [chartColors[0], chartColors[1]]
+        // label: brand
       }
     ]
   };
   const lineOptions = {
     ...defaultChartOptions,
-    scales: getLineChartScales({ kpiPrimary: "sales" })
+    legend: { display: false },
+    scales: getLineChartScales({ kpiPrimary: "sales", removeY: true }),
+    title: {
+      display: true,
+      position: "top",
+      text: `${brand} sales history`,
+      fontSize: 15
+    }
   };
   const barOptions = {
     ...defaultChartOptions,
-    scales: getBarChartScales({ kpiPrimary: "revenue" })
+    legend: { display: false },
+    scales: getBarChartScales({ kpiPrimary: "revenue", removeY: true }),
+    title: {
+      display: true,
+      position: "top",
+      text: `${brand} sales revenue`,
+      fontSize: 15
+    }
   };
-  const pieOptions = {};
+  const pieOptions = {
+    legend: { display: false },
+    title: {
+      display: true,
+      position: "top",
+      text: `${brand} ${year} market share`,
+      fontSize: 15
+    },
+    animation: { easing: "easeOutQuad" },
+    onResize: null,
+    maintainAspectRatio: false,
+    responsive: true
+  };
 
   return { lineData, barData, pieData, lineOptions, barOptions, pieOptions };
 };

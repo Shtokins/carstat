@@ -1,4 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@mixin tile-layout {
+  background: #fff;
+  border: 1px solid silver;
+  border-radius: 10px;
+  padding: 10px;
+}
 
 body {
   margin: 0;
@@ -23,8 +29,17 @@ code {
 }
 
 .main-chart-container {
-  height: 70vh;
-  background-color: #fff;
-  border-radius: 10px;
-  border: 1px solid silver;
+  @include tile-layout;
+  height: calc(65vh - 100px);
+}
+
+.additional-charts-row {
+  // margin-top: 20px;
+}
+
+.additional-charts-row .ant-col {
+  @include tile-layout;
+  height: calc(35vh - 40px);
+  margin-top: 20px;
+  padding-top: 0;
 }

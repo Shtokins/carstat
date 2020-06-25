@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo, useContext } from "react";
 import { fetchAdditionalChartData } from "../helpers";
 import { Row, Col } from "antd";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
-import { Pie, Bar, Line } from "react-chartjs-2";
+import { Bar, Line, Doughnut } from "react-chartjs-2";
 
 const AdditionalCharts = ({ brand, yearPrimary }) => {
   const {
@@ -19,7 +19,7 @@ const AdditionalCharts = ({ brand, yearPrimary }) => {
       pieOptions
     } = fetchAdditionalChartData({
       data: cars,
-      yyear: yearPrimary,
+      year: yearPrimary,
       brand
     });
     setChartData({
@@ -31,30 +31,19 @@ const AdditionalCharts = ({ brand, yearPrimary }) => {
       pieOptions
     });
   }, [brand, yearPrimary]);
-
-  useEffect(() => {
-    const {
-      barData,
-      barOptions,
-      lineData,
-      lineOptions,
-      pieData,
-      pieOptions
-    } = fetchAdditionalChartData({
-      data: cars,
-      yearPrimary,
-      brand
-    });
-    setChartData({
-      barData,
-      barOptions,
-      lineData,
-      lineOptions,
-      pieData,
-      pieOptions
-    });
-  }, [brand, yearPrimary]);
+  // useEffect(() => {
+  //   const { pieData } = fetchAdditionalChartData({
+  //     data: cars,
+  //     yearPrimary,
+  //     brand
+  //   });
+  //   setChartData({
+  //     ...chartData,
+  //     pieData
+  //   });
+  // }, [yearPrimary]);
   if (!chartData) return null;
+  console.log("chartData", chartData);
   const {
     barData,
     barOptions,
@@ -64,15 +53,15 @@ const AdditionalCharts = ({ brand, yearPrimary }) => {
     pieOptions
   } = chartData;
   return (
-    <Row type="flex" className="additional-charts-row">
-      <Col>
+    <Row className="additional-charts-row">
+      <Col sm={24} md={8}>
         <Line options={lineOptions} data={lineData} />
       </Col>
-      <Col>
+      <Col sm={24} md={8}>
         <Bar options={barOptions} data={barData} />
       </Col>
-      <Col>
-        <Pie options={pieOptions} data={pieData} />
+      <Col sm={24} md={8}>
+        <Doughnut options={pieOptions} data={pieData} />
       </Col>
     </Row>
   );
