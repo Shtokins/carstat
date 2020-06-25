@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Layout, Menu } from "antd";
 import { MainChartBlock } from "../MainChartBlock";
 import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  // MenuUnfoldOutlined,
+  // MenuFoldOutlined,
   UserOutlined,
   VideoCameraOutlined,
   UploadOutlined
 } from "@ant-design/icons";
 
-const { Header, Sider, Content } = Layout;
+const {  Sider } = Layout;
 
 export const RootApp = () => {
   const [collapsed, setCollapsed] = useState(false);

@@ -3,20 +3,12 @@ import BarChart from "./components/BarChart";
 import { fetchBarChartData, fetchLineChartData } from "./helpers";
 import LineChart from "./components/LineChart";
 import ControlPanel from "./components/ControlPanel";
-import { Radio } from "antd";
 
-const yearPrimary = "2019";
-const comparatorPrimary = "sales";
-const comparatorSecondary = "revenue";
-const showSecondary = true;
-
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
 const initialChartSettings = {
   yearPrimary: "2019",
   kpiPrimary: "sales",
   kpiAdditional: "revenue",
-  showAdditional: true
+  showAdditional: false
 };
 
 export const MainChart = ({ cars }) => {
@@ -25,18 +17,24 @@ export const MainChart = ({ cars }) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
+    const {
+      yearPrimary,
+      kpiPrimary,
+      kpiAdditional,
+      showAdditional
+    } = chartSettings;
     const { barChartData, barChartOptions } = fetchBarChartData({
       data: cars,
       yearPrimary,
-      comparatorPrimary,
-      comparatorSecondary,
-      showSecondary
+      kpiPrimary,
+      kpiAdditional,
+      showAdditional
     });
     const { lineChartData, lineChartOptions } = fetchLineChartData({
       data: cars,
       yearPrimary,
-      comparatorPrimary,
-      showSecondary
+      kpiPrimary,
+      showAdditional
     });
     setChartData({
       barChartOptions,
@@ -44,7 +42,7 @@ export const MainChart = ({ cars }) => {
       lineChartData,
       lineChartOptions
     });
-  }, [cars]);
+  }, [cars, chartSettings]);
   if (!cars) return null;
   const controlPanelProps = {
     setBlockMode,

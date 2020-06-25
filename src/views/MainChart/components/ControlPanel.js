@@ -1,6 +1,6 @@
 import React, { memo, useContext } from "react";
 import { ControlPanelWrapper } from "../styles";
-import { Radio, Select } from "antd";
+import { Radio, Select, Checkbox } from "antd";
 import { Icon as FaIcon } from "react-fa";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
 import { getYearsOptions } from "../helpers";
@@ -14,7 +14,7 @@ const ControlPanel = ({
   chartSettings,
   setCharsSettings
 }) => {
-  const { _, carsApiState } = useContext(CarsApiContext);
+  const { carsApiState } = useContext(CarsApiContext);
   const yearsOptions = getYearsOptions(carsApiState);
   const setSetting = (setting, value) => {
     console.log("setSetting: ", setting, value);
@@ -31,7 +31,6 @@ const ControlPanel = ({
   const {
     yearPrimary,
     kpiPrimary,
-    kpiAdditional,
     showAdditional
   } = chartSettings;
 
@@ -52,11 +51,26 @@ const ControlPanel = ({
         </RadioButton>
       </RadioGroup>
       <Select
-        style={{ width: 120 }}
+        // style={{ width: 120 }}
         onChange={year => setSetting("yearPrimary", year)}
         options={yearsOptions}
         value={yearPrimary}
       />
+      <Radio.Group
+        onChange={e => setSetting("kpiPrimary", e.target.value)}
+        value={kpiPrimary}
+      >
+        <Radio value="sales">Sales</Radio>
+        <Radio value="revenue">Revenue</Radio>
+      </Radio.Group>
+      {blockMode === "bar" && (
+        <Checkbox
+          checked={showAdditional}
+          onChange={e => setSetting("showAdditional", e.target.checked)}
+        >
+          Additional KPI
+        </Checkbox>
+      )}
     </ControlPanelWrapper>
   );
 };

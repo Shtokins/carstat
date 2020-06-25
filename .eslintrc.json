@@ -17,11 +17,10 @@
       "jest": true,
       "node": true
     },
-    "parser": "babel-eslint",
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["react", "@babel/plugin-proposal-optional-chaining"],
+  "plugins": ["react"],
   "rules": {
     "no-unused-vars": "warn",
     "react/prop-types": "off",

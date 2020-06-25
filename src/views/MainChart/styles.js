@@ -13,6 +13,10 @@ const ControlPanelWrapper = styled.div`
   > div {
     margin-right: 15px;
   }
+
+  .ant-radio-wrapper {
+    display: block;
+  }
 `;
 
 export { ControlPanelWrapper };

@@ -5,13 +5,13 @@ const defaultChartDataset = color => ({
   data: []
 });
 
-const defaultChartOptions = () => ({
+const defaultChartOptions = {
   backgroundColor: "blue",
   animation: { easing: "easeOutQuad" },
   onResize: null,
   maintainAspectRatio: false,
   responsive: true
-});
+};
 
 const chartColors = [
   "#FF645D",
@@ -28,36 +28,36 @@ const secondaryColor = "#AE43BA";
 export const fetchBarChartData = ({
   data,
   yearPrimary,
-  comparatorPrimary,
-  comparatorSecondary,
-  showSecondary
+  kpiPrimary,
+  kpiAdditional,
+  showAdditional
 }) => {
   const labels = [];
   const datasets = [
     {
       ...defaultChartDataset(primaryColor),
-      label: comparatorPrimary.toUpperCase(),
-      yAxisID: comparatorPrimary
+      label: kpiPrimary.toUpperCase(),
+      yAxisID: kpiPrimary
     }
   ];
-  if (showSecondary)
+  if (showAdditional)
     datasets.push({
       ...defaultChartDataset(secondaryColor),
-      label: comparatorSecondary.toUpperCase(),
-      yAxisID: comparatorSecondary
+      label: kpiAdditional.toUpperCase(),
+      yAxisID: kpiAdditional
     });
   data.forEach(company => {
     labels.push(company.brand);
-    datasets[0].data.push(company[comparatorPrimary][yearPrimary]);
-    if (showSecondary) {
-      datasets[1].data.push(company[comparatorSecondary][yearPrimary]);
+    datasets[0].data.push(company[kpiPrimary][yearPrimary]);
+    if (showAdditional) {
+      datasets[1].data.push(company[kpiAdditional][yearPrimary]);
     }
   });
 
   const scales = getBarChartScales({
-    comparatorPrimary,
-    comparatorSecondary,
-    showSecondary
+    kpiPrimary,
+    kpiAdditional,
+    showAdditional
   });
 
   const barChartOptions = {
@@ -73,15 +73,11 @@ export const fetchBarChartData = ({
   return { barChartOptions, barChartData: { labels, datasets } };
 };
 
-const getBarChartScales = ({
-  comparatorPrimary,
-  comparatorSecondary,
-  showSecondary
-}) => {
+const getBarChartScales = ({ kpiPrimary, kpiAdditional, showAdditional }) => {
   const xAxes = [{ gridLines: { display: false } }];
   const yAxes = [
     {
-      id: comparatorPrimary,
+      id: kpiPrimary,
       position: "left",
       fontStyle: "bold",
       fontColor: primaryColor,
@@ -94,13 +90,13 @@ const getBarChartScales = ({
         fontColor: primaryColor,
         fontSize: 14,
         fontStyle: "bold",
-        labelString: comparatorPrimary.toUpperCase()
+        labelString: kpiPrimary.toUpperCase()
       }
     }
   ];
-  if (showSecondary)
+  if (showAdditional)
     yAxes.push({
-      id: comparatorSecondary,
+      id: kpiAdditional,
       position: "right",
       fontStyle: "bold",
       fontColor: secondaryColor,
@@ -112,13 +108,13 @@ const getBarChartScales = ({
         fontColor: secondaryColor,
         fontSize: 14,
         fontStyle: "bold",
-        labelString: comparatorSecondary.toUpperCase()
+        labelString: kpiAdditional.toUpperCase()
       }
     });
   return { xAxes, yAxes };
 };
 
-export const fetchLineChartData = ({ data, comparatorPrimary }) => {
+export const fetchLineChartData = ({ data, kpiPrimary }) => {
   let labels;
 
   const datasets = [];
@@ -130,23 +126,23 @@ export const fetchLineChartData = ({ data, comparatorPrimary }) => {
       ...defaultChartDataset(chartColors[index]),
       fill: false,
       label: brand,
-      data: Object.values(company[comparatorPrimary])
+      data: Object.values(company[kpiPrimary])
     });
   });
 
   const scales = getLineChartScales({
-    comparatorPrimary
+    kpiPrimary
   });
 
   const lineChartOptions = { ...defaultChartOptions, scales };
   return { lineChartOptions, lineChartData: { labels, datasets } };
 };
 
-const getLineChartScales = ({ comparatorPrimary }) => {
+const getLineChartScales = ({ kpiPrimary }) => {
   const xAxes = [{ gridLines: { display: false } }];
   const yAxes = [
     {
-      id: comparatorPrimary,
+      id: kpiPrimary,
       position: "left",
       fontStyle: "bold",
       fontColor: primaryColor,
@@ -159,7 +155,7 @@ const getLineChartScales = ({ comparatorPrimary }) => {
         fontColor: primaryColor,
         fontSize: 14,
         fontStyle: "bold",
-        labelString: comparatorPrimary.toUpperCase()
+        labelString: kpiPrimary.toUpperCase()
       }
     }
   ];
@@ -168,8 +164,9 @@ const getLineChartScales = ({ comparatorPrimary }) => {
 };
 
 export const getYearsOptions = state => {
+  // eslint-disable-next-line
   const obj = state?.cars?.[0]?.sales ?? {};
   return Object.keys(obj)
     .map(year => ({ label: year, value: year }))
-    .reverse()
+    .reverse();
 };
