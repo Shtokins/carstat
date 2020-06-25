@@ -170,3 +170,62 @@ export const getYearsOptions = state => {
     .map(year => ({ label: year, value: year }))
     .reverse();
 };
+
+export const fetchAdditionalChartData = ({ data, year, brand }) => {
+  const labels = [];
+  const line = [];
+  const bar = [];
+  const pie = [];
+  const currentBrand = data.find(el => el.brand === brand);
+  if (currentBrand) {
+    const { sales, shares, revenue } = currentBrand;
+    Object.keys(currentBrand.sales).forEach(key => {
+      labels.push(key);
+      line.push(sales[key]);
+      bar.push(revenue[key]);
+    });
+    pie.push([...[shares[year], 100 - shares[year]]]);
+  }
+  const lineData = {
+    labels,
+    datasets: [
+      {
+        ...defaultChartDataset(primaryColor),
+        data: line,
+        label: brand,
+        fill: false
+      }
+    ]
+  };
+  const barData = {
+    labels,
+    datasets: [
+      {
+        ...defaultChartDataset(secondaryColor),
+        data: bar,
+        label: brand
+      }
+    ]
+  };
+  const pieData = {
+    labels: [brand, "Others"],
+    datasets: [
+      {
+        data: pie,
+        backgroundColor: chartColors[2],
+        label: brand
+      }
+    ]
+  };
+  const lineOptions = {
+    ...defaultChartOptions,
+    scales: getLineChartScales({ kpiPrimary: "sales" })
+  };
+  const barOptions = {
+    ...defaultChartOptions,
+    scales: getBarChartScales({ kpiPrimary: "revenue" })
+  };
+  const pieOptions = {};
+
+  return { lineData, barData, pieData, lineOptions, barOptions, pieOptions };
+};

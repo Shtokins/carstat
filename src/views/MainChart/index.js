@@ -3,6 +3,7 @@ import BarChart from "./components/BarChart";
 import { fetchBarChartData, fetchLineChartData } from "./helpers";
 import LineChart from "./components/LineChart";
 import ControlPanel from "./components/ControlPanel";
+import AdditionalCharts from "./components/AdditionalCharts";
 
 const initialChartSettings = {
   yearPrimary: "2019",
@@ -69,6 +70,10 @@ export const MainChart = ({ cars }) => {
         )}
         {blockMode === "table" && <div>Table here</div>}
       </div>
+      <AdditionalCharts
+        brand="Toyota"
+        yearPrimary={chartSettings.yearPrimary}
+      />
     </div>
   );
 };
