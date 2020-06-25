@@ -166,3 +166,10 @@ const getLineChartScales = ({ comparatorPrimary }) => {
 
   return { xAxes, yAxes };
 };
+
+export const getYearsOptions = state => {
+  const obj = state?.cars?.[0]?.sales ?? {};
+  return Object.keys(obj)
+    .map(year => ({ label: year, value: year }))
+    .reverse()
+};

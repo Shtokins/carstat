@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import BarChart from "./BarChart";
+import BarChart from "./components/BarChart";
 import { fetchBarChartData, fetchLineChartData } from "./helpers";
-import LineChart from "./LineChart";
-import { ControlPanelWrapper } from "./styles";
+import LineChart from "./components/LineChart";
+import ControlPanel from "./components/ControlPanel";
 import { Radio } from "antd";
-import { Icon as FaIcon } from "react-fa";
 
 const yearPrimary = "2019";
 const comparatorPrimary = "sales";
@@ -13,10 +12,18 @@ const showSecondary = true;
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const initialChartSettings = {
+  yearPrimary: "2019",
+  kpiPrimary: "sales",
+  kpiAdditional: "revenue",
+  showAdditional: true
+};
 
 export const MainChart = ({ cars }) => {
   const [blockMode, setBlockMode] = useState("bar");
+  const [chartSettings, setCharsSettings] = useState(initialChartSettings);
   const [chartData, setChartData] = useState(null);
+
   useEffect(() => {
     const { barChartData, barChartOptions } = fetchBarChartData({
       data: cars,
@@ -39,21 +46,16 @@ export const MainChart = ({ cars }) => {
     });
   }, [cars]);
   if (!cars) return null;
+  const controlPanelProps = {
+    setBlockMode,
+    blockMode,
+    chartSettings,
+    setCharsSettings
+  };
   return (
     <div className="main-chart">
-      <ControlPanelWrapper>
-        <RadioGroup
-          value={blockMode}
-          onChange={e => setBlockMode(e.target.value)}
-        >
-          <RadioButton value="line">
-            <FaIcon name="chart-line" /> Line
-          </RadioButton>
-          <RadioButton value="bar">
-            <FaIcon name="chart-bar" /> Bar
-          </RadioButton>
-        </RadioGroup>
-      </ControlPanelWrapper>
+      <ControlPanel {...controlPanelProps} />
+
       <div className="main-chart-container">
         {chartData && blockMode === "bar" && (
           <BarChart
@@ -67,7 +69,7 @@ export const MainChart = ({ cars }) => {
             options={chartData.lineChartOptions}
           />
         )}
-        {blockMode === "grid" && <div>Table here</div>}
+        {blockMode === "table" && <div>Table here</div>}
       </div>
     </div>
   );

@@ -10,14 +10,21 @@
   },
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "jest": true,
+      "node": true
     },
-    "ecmaVersion": 2018,
+    "parser": "babel-eslint",
+    "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "@babel/plugin-proposal-optional-chaining"],
   "rules": {
     "no-unused-vars": "warn",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/display-name": "off"
   }
 }
