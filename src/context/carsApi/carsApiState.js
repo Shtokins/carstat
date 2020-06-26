@@ -9,9 +9,13 @@ export const CarsApiState = ({ children }) => {
 
   const getCarsData = async () => {
     setLoading();
-    const response = await axios.get("cars.json");
-    console.log("response: ", response);
-    dispatch({ type: t.GET_CARS_DATA, payload: response.data });
+    try {
+      const response = await axios.get("cars.json");
+      console.log("response: ", response);
+      dispatch({ type: t.GET_CARS_DATA, payload: response.data });
+    } catch (error) {
+      console.error("GET DATA ERROR: ", error);
+    }
   };
 
   const setLoading = () => {
