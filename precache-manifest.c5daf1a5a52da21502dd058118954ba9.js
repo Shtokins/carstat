@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0d39fb6f11fec85319be2e6b0ab38ded",
+    "revision": "76e19eb958e1dd7e556a8f438a4a8d8b",
     "url": "/carstat/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/carstat/static/css/2.c3773a3d.chunk.css"
   },
   {
-    "revision": "76540f2320f67e90a01c",
+    "revision": "85ed4123a5ba9e9e5c5f",
     "url": "/carstat/static/css/main.71a08aa8.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/carstat/static/js/2.7cb8ea53.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "76540f2320f67e90a01c",
-    "url": "/carstat/static/js/main.3f6b44f0.chunk.js"
+    "revision": "85ed4123a5ba9e9e5c5f",
+    "url": "/carstat/static/js/main.a5c3287a.chunk.js"
   },
   {
     "revision": "e444a72cb08e782c0611",
