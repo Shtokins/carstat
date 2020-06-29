@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import BarChart from "./components/BarChart";
-import { fetchBarChartData, fetchLineChartData } from "./helpers";
+import { fetchBarChartData, fetchLineChartData } from "./chartHelpers";
 import LineChart from "./components/LineChart";
 import ControlPanel from "./components/ControlPanel";
 import AdditionalCharts from "./components/AdditionalCharts";
+import Tables from "./components/tables";
 
 const initialChartSettings = {
   yearPrimary: "2019",
@@ -18,6 +19,7 @@ export const MainChart = ({ cars }) => {
   const [chartSettings, setCharsSettings] = useState(initialChartSettings);
   const [chartData, setChartData] = useState(null);
   const [additionalBrand, setAdditionalBrand] = useState(defaultBrand);
+  const [tableType, setTableType] = useState("ag");
 
   useEffect(() => {
     const {
@@ -51,13 +53,18 @@ export const MainChart = ({ cars }) => {
     setBlockMode,
     blockMode,
     chartSettings,
-    setCharsSettings
+    setCharsSettings,
+    tableType,
+    setTableType
   };
   return (
     <div className="main-chart">
       <ControlPanel {...controlPanelProps} />
 
-      <div className="main-chart-container">
+      <div
+        className="main-chart-container"
+        style={blockMode === "bar" ? { cursor: "pointer" } : {}}
+      >
         {chartData && blockMode === "bar" && (
           <BarChart
             data={chartData.barChartData}
@@ -71,7 +78,14 @@ export const MainChart = ({ cars }) => {
             options={chartData.lineChartOptions}
           />
         )}
-        {blockMode === "table" && <div>Table here</div>}
+        {blockMode === "table" && (
+          <Tables
+            data={cars}
+            tableType={tableType}
+            kpiPrimary={chartSettings.kpiPrimary}
+            selectBrand={setAdditionalBrand}
+          />
+        )}
       </div>
       <AdditionalCharts
         brand={additionalBrand}

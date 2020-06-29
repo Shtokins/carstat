@@ -17,10 +17,11 @@
       "jest": true,
       "node": true
     },
-    "parser": "babel-eslint",
+
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
+  "parser": "babel-eslint",
   "plugins": ["react"],
   "rules": {
     "no-unused-vars": "warn",

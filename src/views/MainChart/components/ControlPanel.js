@@ -3,7 +3,7 @@ import { ControlPanelWrapper } from "../styles";
 import { Radio, Select, Checkbox } from "antd";
 import { Icon as FaIcon } from "react-fa";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
-import { getYearsOptions } from "../helpers";
+import { getYearsOptions } from "../chartHelpers";
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
@@ -12,12 +12,13 @@ const ControlPanel = ({
   setBlockMode,
   blockMode,
   chartSettings,
-  setCharsSettings
+  setCharsSettings,
+  tableType,
+  setTableType
 }) => {
   const { carsApiState } = useContext(CarsApiContext);
   const yearsOptions = getYearsOptions(carsApiState);
   const setSetting = (setting, value) => {
-    console.log("setSetting: ", setting, value);
     const changes = { [setting]: value };
     if (setting === "kpiPrimary") {
       changes.kpiAdditional = value === "sales" ? "revenue" : "sales";
@@ -28,11 +29,7 @@ const ControlPanel = ({
     setCharsSettings({ ...chartSettings, ...changes });
   };
 
-  const {
-    yearPrimary,
-    kpiPrimary,
-    showAdditional
-  } = chartSettings;
+  const { yearPrimary, kpiPrimary, showAdditional } = chartSettings;
 
   return (
     <ControlPanelWrapper>
@@ -50,12 +47,14 @@ const ControlPanel = ({
           <FaIcon name="table" /> Table
         </RadioButton>
       </RadioGroup>
-      <Select
-        // style={{ width: 120 }}
-        onChange={year => setSetting("yearPrimary", year)}
-        options={yearsOptions}
-        value={yearPrimary}
-      />
+      {blockMode !== "table" && (
+        <Select
+          // style={{ width: 120 }}
+          onChange={year => setSetting("yearPrimary", year)}
+          options={yearsOptions}
+          value={yearPrimary}
+        />
+      )}
       <Radio.Group
         onChange={e => setSetting("kpiPrimary", e.target.value)}
         value={kpiPrimary}
@@ -70,6 +69,16 @@ const ControlPanel = ({
         >
           Additional KPI
         </Checkbox>
+      )}
+      {blockMode === "table" && (
+        <RadioGroup
+          value={tableType}
+          onChange={e => setTableType(e.target.value)}
+        >
+          <RadioButton value="ag">ag-Grid</RadioButton>
+          <RadioButton value="line">React-Table</RadioButton>
+          <RadioButton value="antd">Ant Design Grid</RadioButton>
+        </RadioGroup>
       )}
     </ControlPanelWrapper>
   );

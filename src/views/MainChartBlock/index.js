@@ -11,6 +11,6 @@ export const MainChartBlock = () => {
   useEffect(() => {
     getData();
   }, [getData]);
-  console.log("carsApiState: ", carsApiState);
+  // console.log("carsApiState: ", carsApiState);
   return carsApiState.cars ? <MainChart cars={carsApiState.cars} /> : null;
 };

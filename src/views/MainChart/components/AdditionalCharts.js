@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo, useContext } from "react";
-import { fetchAdditionalChartData } from "../helpers";
+import { fetchAdditionalChartData } from "../chartHelpers";
 import { Row, Col } from "antd";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
@@ -43,7 +43,7 @@ const AdditionalCharts = ({ brand, yearPrimary }) => {
   //   });
   // }, [yearPrimary]);
   if (!chartData) return null;
-  console.log("chartData", chartData);
+  // console.log("chartData", chartData);
   const {
     barData,
     barOptions,

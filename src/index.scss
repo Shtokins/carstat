@@ -25,16 +25,9 @@ code {
   height: 100%;
 }
 
-.main-chart-control {
-}
-
 .main-chart-container {
   @include tile-layout;
   height: calc(65vh - 100px);
-}
-
-.additional-charts-row {
-  // margin-top: 20px;
 }
 
 .additional-charts-row .ant-col {
