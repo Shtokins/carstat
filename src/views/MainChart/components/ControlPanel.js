@@ -76,7 +76,7 @@ const ControlPanel = ({
           onChange={e => setTableType(e.target.value)}
         >
           <RadioButton value="ag">ag-Grid</RadioButton>
-          <RadioButton value="line">React-Table</RadioButton>
+          <RadioButton value="reacttable">React-Table</RadioButton>
           <RadioButton value="antd">Ant Design Grid</RadioButton>
         </RadioGroup>
       )}
