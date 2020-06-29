@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { useTable, useSortBy } from "react-table";
 import styled from "styled-components";
 
-function Table({ columns, data }) {
+function Table({ columns, data, onRowClick }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -50,7 +50,7 @@ function Table({ columns, data }) {
           {firstPageRows.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} onClick={() => onRowClick(row)}>
                 {row.cells.map(cell => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
@@ -68,7 +68,11 @@ function Table({ columns, data }) {
 const ReactTableComponent = ({ tableData: { columns, data }, selectBrand }) => {
   // console.log("data: ", data);
   // console.log("columns: ", columns);
-
+  const onRowClick = row => {
+    console.log("row", row);
+    const { brand } = row.values;
+    selectBrand(brand);
+  };
   return (
     <Styles>
       <Table
@@ -77,6 +81,7 @@ const ReactTableComponent = ({ tableData: { columns, data }, selectBrand }) => {
         showPagination={false}
         showPageSizeOptions={false}
         className="-striped -highlight"
+        onRowClick={onRowClick}
       />
     </Styles>
   );
@@ -95,6 +100,7 @@ const Styles = styled.div`
     border: 1px solid black;
 
     tr {
+      cursor: pointer;
       :last-child {
         td {
           border-bottom: 0;
