@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/carstat/static/css/main.6e375052.chunk.css",
-    "main.js": "/carstat/static/js/main.bc586aea.chunk.js",
-    "main.js.map": "/carstat/static/js/main.bc586aea.chunk.js.map",
+    "main.css": "/carstat/static/css/main.71a08aa8.chunk.css",
+    "main.js": "/carstat/static/js/main.03a09956.chunk.js",
+    "main.js.map": "/carstat/static/js/main.03a09956.chunk.js.map",
     "runtime-main.js": "/carstat/static/js/runtime-main.8d0b6907.js",
     "runtime-main.js.map": "/carstat/static/js/runtime-main.8d0b6907.js.map",
-    "static/css/2.2ef1bfe3.chunk.css": "/carstat/static/css/2.2ef1bfe3.chunk.css",
-    "static/js/2.f19aa3c8.chunk.js": "/carstat/static/js/2.f19aa3c8.chunk.js",
-    "static/js/2.f19aa3c8.chunk.js.map": "/carstat/static/js/2.f19aa3c8.chunk.js.map",
+    "static/css/2.c3773a3d.chunk.css": "/carstat/static/css/2.c3773a3d.chunk.css",
+    "static/js/2.4131c404.chunk.js": "/carstat/static/js/2.4131c404.chunk.js",
+    "static/js/2.4131c404.chunk.js.map": "/carstat/static/js/2.4131c404.chunk.js.map",
     "index.html": "/carstat/index.html",
-    "precache-manifest.d78c5647f2e7393c46b52a9fe70d0cb9.js": "/carstat/precache-manifest.d78c5647f2e7393c46b52a9fe70d0cb9.js",
+    "precache-manifest.14c4c1ece458a00d573ddad8ba939986.js": "/carstat/precache-manifest.14c4c1ece458a00d573ddad8ba939986.js",
     "service-worker.js": "/carstat/service-worker.js",
-    "static/css/2.2ef1bfe3.chunk.css.map": "/carstat/static/css/2.2ef1bfe3.chunk.css.map",
-    "static/css/main.6e375052.chunk.css.map": "/carstat/static/css/main.6e375052.chunk.css.map",
-    "static/js/2.f19aa3c8.chunk.js.LICENSE.txt": "/carstat/static/js/2.f19aa3c8.chunk.js.LICENSE.txt",
+    "static/css/2.c3773a3d.chunk.css.map": "/carstat/static/css/2.c3773a3d.chunk.css.map",
+    "static/css/main.71a08aa8.chunk.css.map": "/carstat/static/css/main.71a08aa8.chunk.css.map",
+    "static/js/2.4131c404.chunk.js.LICENSE.txt": "/carstat/static/js/2.4131c404.chunk.js.LICENSE.txt",
     "static/media/font-awesome.css": "/carstat/static/media/fontawesome-webfont.fee66e71.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.8d0b6907.js",
-    "static/css/2.2ef1bfe3.chunk.css",
-    "static/js/2.f19aa3c8.chunk.js",
-    "static/css/main.6e375052.chunk.css",
-    "static/js/main.bc586aea.chunk.js"
+    "static/css/2.c3773a3d.chunk.css",
+    "static/js/2.4131c404.chunk.js",
+    "static/css/main.71a08aa8.chunk.css",
+    "static/js/main.03a09956.chunk.js"
   ]
 }
