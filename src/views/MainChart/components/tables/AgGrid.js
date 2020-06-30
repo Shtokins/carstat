@@ -5,11 +5,8 @@ import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { debounce } from "throttle-debounce";
 
 const AgGrid = ({ tableData, selectBrand }) => {
-  // console.log("AgGrid tableData: ", tableData);
-
   const onSelectionChanged = params => {
     var selectedRows = params.api.getSelectedRows();
-    // console.log("onSelectionChanged -> selectedRows", selectedRows);
     const { brand } = selectedRows[0];
     selectBrand(brand);
   };

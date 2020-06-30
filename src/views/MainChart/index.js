@@ -84,6 +84,7 @@ export const MainChart = ({ cars }) => {
             tableType={tableType}
             kpiPrimary={chartSettings.kpiPrimary}
             selectBrand={setAdditionalBrand}
+            selectedBrand={additionalBrand}
           />
         )}
       </div>

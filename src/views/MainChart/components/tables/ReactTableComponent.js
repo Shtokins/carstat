@@ -47,7 +47,7 @@ function Table({ columns, data, onRowClick }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+          {firstPageRows.map(row => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()} onClick={() => onRowClick(row)}>
@@ -66,10 +66,7 @@ function Table({ columns, data, onRowClick }) {
 }
 
 const ReactTableComponent = ({ tableData: { columns, data }, selectBrand }) => {
-  // console.log("data: ", data);
-  // console.log("columns: ", columns);
   const onRowClick = row => {
-    console.log("row", row);
     const { brand } = row.values;
     selectBrand(brand);
   };

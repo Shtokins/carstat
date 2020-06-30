@@ -17,6 +17,10 @@ const ControlPanelWrapper = styled.div`
   .ant-radio-wrapper {
     display: block;
   }
+
+  .antd-grid-container {
+    overflow: auto;
+  }
 `;
 
 export { ControlPanelWrapper };

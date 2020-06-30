@@ -38,5 +38,26 @@ export const prepareTable = (data, tableType, kpiPrimary) => {
       rowData.push(newRow);
     });
     return { columns, data: rowData };
+  } else {
+    let columns = [{ title: "Brand", dataIndex: "brand", key: "001" }];
+    const dataSource = [];
+    data.forEach((company, index) => {
+      if (!index) {
+        columns = columns.concat(
+          Object.keys(company.sales).map((year, colindex) => ({
+            title: year,
+            dataIndex: year,
+            key: year + colindex
+          }))
+        );
+      }
+      const targetKpi = company[kpiPrimary];
+      const newRow = { brand: company.brand };
+
+      Object.keys(targetKpi).forEach(year => (newRow[year] = targetKpi[year]));
+      newRow.key = company.brand;
+      dataSource.push(newRow);
+    });
+    return { columns, dataSource };
   }
 };

@@ -31,19 +31,7 @@ const AdditionalCharts = ({ brand, yearPrimary }) => {
       pieOptions
     });
   }, [brand, yearPrimary]);
-  // useEffect(() => {
-  //   const { pieData } = fetchAdditionalChartData({
-  //     data: cars,
-  //     yearPrimary,
-  //     brand
-  //   });
-  //   setChartData({
-  //     ...chartData,
-  //     pieData
-  //   });
-  // }, [yearPrimary]);
   if (!chartData) return null;
-  // console.log("chartData", chartData);
   const {
     barData,
     barOptions,

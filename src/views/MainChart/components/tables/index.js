@@ -2,8 +2,15 @@ import React, { memo } from "react";
 import { prepareTable } from "../../dataHelpers";
 import AgGrid from "./AgGrid";
 import ReactTableComponent from "./ReactTableComponent";
+import AntdTable from "./AntdTable";
 
-const Tables = ({ data, tableType, kpiPrimary, selectBrand }) => {
+const Tables = ({
+  data,
+  tableType,
+  kpiPrimary,
+  selectBrand,
+  selectedBrand
+}) => {
   const tableData = prepareTable(data, tableType, kpiPrimary);
 
   if (tableType === "ag") {
@@ -13,7 +20,13 @@ const Tables = ({ data, tableType, kpiPrimary, selectBrand }) => {
       <ReactTableComponent tableData={tableData} selectBrand={selectBrand} />
     );
   } else {
-    return <div>Another Grids Will be soon here!</div>;
+    return (
+      <AntdTable
+        tableData={tableData}
+        selectBrand={selectBrand}
+        selectedBrand={selectedBrand}
+      />
+    );
   }
 };
 
