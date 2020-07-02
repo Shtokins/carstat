@@ -21,6 +21,22 @@ const ControlPanelWrapper = styled.div`
   .antd-grid-container {
     overflow: auto;
   }
+
+  .controlUnit {
+    margin-right: 15px;
+    .ant-radio-button-wrapper {
+      .anticon {
+        vertical-align: 0;
+        font-size: 18px;
+        margin-right: 5px;
+      }
+    }
+    .ui.button > .icon {
+      color: #fff;
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
 `;
 
 export { ControlPanelWrapper };

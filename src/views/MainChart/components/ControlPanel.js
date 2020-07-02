@@ -1,12 +1,11 @@
 import React, { memo, useContext } from "react";
 import { ControlPanelWrapper } from "../styles";
 import { Radio, Select, Checkbox } from "antd";
-import { Icon as FaIcon } from "react-fa";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
+import { UIContext } from "../../../context/ui/UIContext";
 import { getYearsOptions } from "../chartHelpers";
-
-const RadioButton = Radio.Button;
-const RadioGroup = Radio.Group;
+import UIRadioButton from "../components/UIs/radioButton";
+import UIRadioButtonGridType from "../components/UIs/radioButtonGridType";
 
 const ControlPanel = ({
   setBlockMode,
@@ -17,6 +16,7 @@ const ControlPanel = ({
   setTableType
 }) => {
   const { carsApiState } = useContext(CarsApiContext);
+  const { uiName } = useContext(UIContext);
   const yearsOptions = getYearsOptions(carsApiState);
   const setSetting = (setting, value) => {
     const changes = { [setting]: value };
@@ -33,23 +33,16 @@ const ControlPanel = ({
 
   return (
     <ControlPanelWrapper>
-      <RadioGroup
-        value={blockMode}
-        onChange={e => setBlockMode(e.target.value)}
-      >
-        <RadioButton value="bar">
-          <FaIcon name="chart-bar" /> Bar
-        </RadioButton>
-        <RadioButton value="line">
-          <FaIcon name="chart-line" /> Line
-        </RadioButton>
-        <RadioButton value="table">
-          <FaIcon name="table" /> Table
-        </RadioButton>
-      </RadioGroup>
-      {blockMode !== "table" && (
+      <div className="controlUnit">
+        <UIRadioButton
+          value={blockMode}
+          onChange={setBlockMode}
+          uiName={uiName}
+        />
+      </div>
+
+      {blockMode === "bar" && (
         <Select
-          // style={{ width: 120 }}
           onChange={year => setSetting("yearPrimary", year)}
           options={yearsOptions}
           value={yearPrimary}
@@ -71,14 +64,13 @@ const ControlPanel = ({
         </Checkbox>
       )}
       {blockMode === "table" && (
-        <RadioGroup
-          value={tableType}
-          onChange={e => setTableType(e.target.value)}
-        >
-          <RadioButton value="ag">ag-Grid</RadioButton>
-          <RadioButton value="reacttable">React-Table</RadioButton>
-          <RadioButton value="antd">Ant Design Grid</RadioButton>
-        </RadioGroup>
+        <div className="controlUnit">
+          <UIRadioButtonGridType
+            value={tableType}
+            onChange={setTableType}
+            uiName={uiName}
+          />
+        </div>
       )}
     </ControlPanelWrapper>
   );
