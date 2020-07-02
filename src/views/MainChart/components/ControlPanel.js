@@ -4,8 +4,9 @@ import { Radio, Select, Checkbox } from "antd";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
 import { UIContext } from "../../../context/ui/UIContext";
 import { getYearsOptions } from "../chartHelpers";
-import UIRadioButton from "../components/UIs/radioButton";
-import UIRadioButtonGridType from "../components/UIs/radioButtonGridType";
+import UIRadioButton from "./UIs/UIRadioButton";
+import UIRadioButtonGridType from "./UIs/UIRadioButtonGridType";
+import UIRadioGroup from "../components/UIs/UIRadioGroup";
 
 const ControlPanel = ({
   setBlockMode,
@@ -48,13 +49,20 @@ const ControlPanel = ({
           value={yearPrimary}
         />
       )}
-      <Radio.Group
+      <div className="controlUnit">
+        <UIRadioGroup
+          value={kpiPrimary}
+          onChange={key => setSetting("kpiPrimary", key)}
+          uiName={uiName}
+        />
+      </div>
+      {/* <Radio.Group
         onChange={e => setSetting("kpiPrimary", e.target.value)}
         value={kpiPrimary}
       >
         <Radio value="sales">Sales</Radio>
         <Radio value="revenue">Revenue</Radio>
-      </Radio.Group>
+      </Radio.Group> */}
       {blockMode === "bar" && (
         <Checkbox
           checked={showAdditional}
