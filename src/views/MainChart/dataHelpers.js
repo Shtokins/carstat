@@ -61,3 +61,18 @@ export const prepareTable = (data, tableType, kpiPrimary) => {
     return { columns, dataSource };
   }
 };
+
+export const prepareDDOptions = (options, ui) => {
+  switch (ui) {
+    case "antd":
+      return options;
+    case "material":
+      return options;
+    case "semantic":
+      return options.map(({ value }) => ({ key: value, value, text: value }));
+    case "atlassian":
+      return options;
+    default:
+      return options;
+  }
+};

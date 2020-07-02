@@ -36,7 +36,7 @@ const ControlPanelWrapper = styled.div`
       font-size: 16px;
       margin-right: 4px;
     }
-    .PrivateSwitchBase-root-1 {
+    .MuiRadio-root {
       padding: 4px;
     }
     .MuiFormControlLabel-root {
@@ -47,6 +47,15 @@ const ControlPanelWrapper = styled.div`
     }
     .ui.radio.checkbox {
       margin-top: 7px;
+    }
+    .ak-select,
+    .ant-select,
+    .ui.search.dropdown {
+      width: 100px;
+      min-width: 100px;
+    }
+    .MuiSelect-select {
+      width: 70px;
     }
   }
 `;

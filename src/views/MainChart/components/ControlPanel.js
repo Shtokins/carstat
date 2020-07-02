@@ -8,6 +8,7 @@ import UIRadioButton from "./UIs/UIRadioButton";
 import UIRadioButtonGridType from "./UIs/UIRadioButtonGridType";
 import UIRadioGroup from "../components/UIs/UIRadioGroup";
 import UICheckbox from "../components/UIs/UICheckbox";
+import UISelect from "../components/UIs/UISelect";
 
 const ControlPanel = ({
   setBlockMode,
@@ -44,11 +45,14 @@ const ControlPanel = ({
       </div>
 
       {blockMode === "bar" && (
-        <Select
-          onChange={year => setSetting("yearPrimary", year)}
-          options={yearsOptions}
-          value={yearPrimary}
-        />
+        <div className="controlUnit">
+          <UISelect
+            yearsOptions={yearsOptions}
+            onChange={year => setSetting("yearPrimary", year)}
+            value={yearPrimary}
+            uiName={uiName}
+          />
+        </div>
       )}
       <div className="controlUnit">
         <UIRadioGroup
@@ -58,11 +62,13 @@ const ControlPanel = ({
         />
       </div>
       {blockMode === "bar" && (
-        <UICheckbox
-          checked={showAdditional}
-          onChange={key => setSetting("showAdditional", key)}
-          uiName={uiName}
-        />
+        <div className="controlUnit">
+          <UICheckbox
+            checked={showAdditional}
+            onChange={key => setSetting("showAdditional", key)}
+            uiName={uiName}
+          />
+        </div>
       )}
       {blockMode === "table" && (
         <div className="controlUnit">
