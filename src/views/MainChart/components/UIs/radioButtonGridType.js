@@ -20,7 +20,7 @@ const UIRadioButtonGridType = ({ value, onChange, uiName }) => {
       );
     case "semantic":
       return (
-        <Button.Group color="blue" value={value}>
+        <Button.Group color="blue" value={value} size="small">
           <Button onClick={() => clickHandler("ag")} active={value === "ag"}>
             ag-Grid
           </Button>

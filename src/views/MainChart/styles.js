@@ -33,7 +33,7 @@ const ControlPanelWrapper = styled.div`
     }
     .ui.button > .icon {
       color: #fff;
-      font-size: 18px;
+      font-size: 16px;
       margin-right: 4px;
     }
   }

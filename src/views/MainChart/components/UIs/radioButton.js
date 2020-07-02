@@ -41,7 +41,7 @@ const UIRadioButton = ({ value, onChange, uiName }) => {
       );
     case "semantic":
       return (
-        <Button.Group color="blue" value={value}>
+        <Button.Group color="blue" value={value} size="small">
           <Button onClick={() => clickHandler("bar")} active={value === "bar"}>
             <SuiIcon name="chart bar" />
             Bar
