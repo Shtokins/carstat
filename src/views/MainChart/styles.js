@@ -36,6 +36,18 @@ const ControlPanelWrapper = styled.div`
       font-size: 16px;
       margin-right: 4px;
     }
+    .PrivateSwitchBase-root-1 {
+      padding: 4px;
+    }
+    .MuiFormControlLabel-root {
+      margin-bottom: 0px;
+    }
+    > label {
+      margin-bottom: 0px;
+    }
+    .ui.radio.checkbox {
+      margin-top: 7px;
+    }
   }
 `;
 

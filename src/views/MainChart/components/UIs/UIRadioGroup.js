@@ -1,23 +1,15 @@
 import React, { memo } from "react";
 import { Radio as AntdRadio } from "antd";
-import { Radio as SuiRadio, Divider } from "semantic-ui-react";
-import {
-  BarChartOutlined,
-  LineChartOutlined,
-  BorderlessTableOutlined
-} from "@ant-design/icons";
-import TimelineOutlinedIcon from "@material-ui/icons/TimelineOutlined";
-import EqualizerOutlinedIcon from "@material-ui/icons/EqualizerOutlined";
-import TableChartOutlinedIcon from "@material-ui/icons/TableChartOutlined";
-import { Button, Icon as SuiIcon } from "semantic-ui-react";
-import { ButtonGroup, Button as MuiButton } from "@material-ui/core";
-import AkButton, { ButtonGroup as AkButtonGroup } from "@atlaskit/button";
-import GraphBarIcon from "@atlaskit/icon/glyph/graph-bar";
-import GraphLineIcon from "@atlaskit/icon/glyph/graph-line";
-import TableIcon from "@atlaskit/icon/glyph/table";
+import { Radio as SuiRadio } from "semantic-ui-react";
+import MuiRadio from "@material-ui/core/Radio";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import { RadioGroup as AkRadioGroup } from "@atlaskit/radio";
 
 const AntdRadioGroup = AntdRadio.Group;
-
+const akRadioOptions = [
+  { name: "color2", value: "sales", label: "Sales" },
+  { name: "color2", value: "revenue", label: "Revenue" }
+];
 const UIRadioGroup = ({ value, onChange, uiName }) => {
   const changeHandler = key => onChange(key);
 
@@ -41,10 +33,7 @@ const UIRadioGroup = ({ value, onChange, uiName }) => {
               name="radioGroup"
               value="sales"
               checked={value === "sales"}
-              onChange={(_, val) => {
-                console.log(val);
-                changeHandler(val.value);
-              }}
+              onChange={(_, val) => changeHandler(val.value)}
             />
           </div>
           <div>
@@ -53,18 +42,52 @@ const UIRadioGroup = ({ value, onChange, uiName }) => {
               name="radioGroup"
               value="revenue"
               checked={value === "revenue"}
-              onChange={(_, val) => {
-                console.log(val);
-                changeHandler(val.value);
-              }}
+              onChange={(_, val) => changeHandler(val.value)}
             />
           </div>
         </>
       );
     case "material":
-      return;
+      return (
+        <>
+          <div>
+            <FormControlLabel
+              control={
+                <MuiRadio
+                  label="Sales"
+                  name="radioGroup1"
+                  value="sales"
+                  checked={value === "sales"}
+                  onChange={e => changeHandler(e.target.value)}
+                />
+              }
+              label="Sales"
+            />
+          </div>
+          <div>
+            <FormControlLabel
+              control={
+                <MuiRadio
+                  label="Revenue"
+                  name="radioGroup1"
+                  value="revenue"
+                  checked={value === "revenue"}
+                  onChange={e => changeHandler(e.target.value)}
+                />
+              }
+              label="Revenue"
+            />
+          </div>
+        </>
+      );
     case "atlassian":
-      return;
+      return (
+        <AkRadioGroup
+          value={value}
+          options={akRadioOptions}
+          onChange={e => changeHandler(e.currentTarget.value)}
+        />
+      );
     default:
       return null;
   }
