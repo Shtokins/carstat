@@ -4,10 +4,10 @@ import { uiReducer } from "./uiReducer";
 import * as t from "./actionTypes";
 
 export const UIState = ({ children }) => {
-  const [state, dispatch] = useReducer(uiReducer, { uiName: "antd" });
+  const [state, dispatch] = useReducer(uiReducer, { uiName: "semantic" });
 
-  const setUI = e => {
-    dispatch({ type: t.SET_UI, payload: e.key });
+  const setUI = key => {
+    dispatch({ type: t.SET_UI, payload: key });
   };
 
   return (
