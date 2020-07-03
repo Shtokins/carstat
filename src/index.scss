@@ -36,3 +36,21 @@ code {
   margin-top: 20px;
   padding-top: 0;
 }
+
+.antd-sider {
+  .ant-menu-item {
+    span {
+      margin-left: 15px;
+    }
+  }
+  &.ant-layout-sider-collapsed {
+    .ant-menu-item {
+      span {
+        display: none;
+      }
+    }
+  }
+  .ant-menu-inline-collapsed > .ant-menu-item {
+    padding: 0 25px;
+  }
+}

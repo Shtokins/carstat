@@ -23,7 +23,7 @@ const UICheckbox = ({ checked, onChange, uiName }) => {
         <SuiCheckbox
           label={label}
           checked={checked}
-          onChange={e => changeHandler(e.target.checked)}
+          onChange={(_, e) => changeHandler(e.checked)}
         />
       );
     case "material":

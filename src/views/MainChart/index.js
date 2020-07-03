@@ -60,7 +60,6 @@ export const MainChart = ({ cars }) => {
   return (
     <div className="main-chart">
       <ControlPanel {...controlPanelProps} />
-
       <div
         className="main-chart-container"
         style={blockMode === "bar" ? { cursor: "pointer" } : {}}

@@ -1,6 +1,5 @@
 import React, { memo, useContext } from "react";
 import { ControlPanelWrapper } from "../styles";
-import { Select } from "antd";
 import { CarsApiContext } from "../../../context/carsApi/carsApiContext";
 import { UIContext } from "../../../context/ui/UIContext";
 import { getYearsOptions } from "../chartHelpers";
@@ -9,6 +8,7 @@ import UIRadioButtonGridType from "./UIs/UIRadioButtonGridType";
 import UIRadioGroup from "../components/UIs/UIRadioGroup";
 import UICheckbox from "../components/UIs/UICheckbox";
 import UISelect from "../components/UIs/UISelect";
+// import antdLogo from "/antdLogo.png"; //
 
 const ControlPanel = ({
   setBlockMode,
@@ -22,6 +22,7 @@ const ControlPanel = ({
   const { uiName } = useContext(UIContext);
   const yearsOptions = getYearsOptions(carsApiState);
   const setSetting = (setting, value) => {
+    console.log("value: ", value);
     const changes = { [setting]: value };
     if (setting === "kpiPrimary") {
       changes.kpiAdditional = value === "sales" ? "revenue" : "sales";
@@ -44,16 +45,16 @@ const ControlPanel = ({
         />
       </div>
 
-      {blockMode === "bar" && (
-        <div className="controlUnit">
-          <UISelect
-            yearsOptions={yearsOptions}
-            onChange={year => setSetting("yearPrimary", year)}
-            value={yearPrimary}
-            uiName={uiName}
-          />
-        </div>
-      )}
+      {/* {blockMode === "bar" && ( */}
+      <div className="controlUnit">
+        <UISelect
+          yearsOptions={yearsOptions}
+          onChange={year => setSetting("yearPrimary", year)}
+          value={yearPrimary}
+          uiName={uiName}
+        />
+      </div>
+      {/* )} */}
       <div className="controlUnit">
         <UIRadioGroup
           value={kpiPrimary}
