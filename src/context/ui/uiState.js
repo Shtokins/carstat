@@ -7,6 +7,7 @@ export const UIState = ({ children }) => {
   const [state, dispatch] = useReducer(uiReducer, { uiName: "antd" });
 
   const setUI = key => {
+    console.log("UIState -> key", key);
     dispatch({ type: t.SET_UI, payload: key });
   };
 

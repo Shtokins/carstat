@@ -168,7 +168,7 @@ export const MaterialDrawer = ({
             button
             key="semantic"
             selected={uiName === "semantic"}
-            onClick={() => setUI("antd")}
+            onClick={() => setUI("semantic")}
           >
             <ListItemIcon>
               <img alt="" src={publicImageFolder + "/suiLogo.png"} width={30} />
@@ -179,7 +179,7 @@ export const MaterialDrawer = ({
             button
             key="material"
             selected={uiName === "material"}
-            onClick={() => setUI("antd")}
+            onClick={() => setUI("material")}
           >
             <ListItemIcon>
               <img alt="" src={publicImageFolder + "/muiLogo.png"} width={30} />

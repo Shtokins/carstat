@@ -2,49 +2,22 @@ import React from "react";
 import { AntdSider } from "./AntdSider";
 import { SemanticSidebar } from "./SemanticSidebar";
 import { MaterialDrawer } from "./MaterialDrawer";
+import { AtlassianKitDrawer } from "./AtlassianKitDrawer";
 
-export const UISider = ({
-  collapsed,
-  setCollapsed,
-  children,
-  uiName,
-  setUI
-}) => {
-  const antdSider = (
-    <AntdSider
-      collapsed={collapsed}
-      setCollapsed={setCollapsed}
-      uiName={uiName}
-      setUI={setUI}
-    >
-      {children}
-    </AntdSider>
-  );
-  switch (uiName) {
+export const UISider = props => {
+  const antdSider = <AntdSider {...props}>{props.children}</AntdSider>;
+  switch (props.uiName) {
     case "antd":
       return antdSider;
     case "semantic":
-      return (
-        <SemanticSidebar
-          collapsed={collapsed}
-          setCollapsed={setCollapsed}
-          uiName={uiName}
-          setUI={setUI}
-        >
-          {children}
-        </SemanticSidebar>
-      );
+      return <SemanticSidebar {...props}>{props.children}</SemanticSidebar>;
     case "material":
+      return <MaterialDrawer {...props}>{props.children}</MaterialDrawer>;
+    case "atlassian":
       return (
-        <MaterialDrawer
-          collapsed={collapsed}
-          setCollapsed={setCollapsed}
-          uiName={uiName}
-          setUI={setUI}
-        >
-          {children}
-        </MaterialDrawer>
+        <AtlassianKitDrawer {...props}>{props.children}</AtlassianKitDrawer>
       );
+
     default:
       return antdSider;
   }

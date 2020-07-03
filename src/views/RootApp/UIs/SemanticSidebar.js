@@ -52,7 +52,7 @@ export const SemanticSidebar = ({
         >
           <div className="sui-sider-menu-item">
             <img alt="" src={publicImageFolder + "/muiLogo.png"} height={30} />
-            <div> Material UI</div>
+            <div>Material UI</div>
           </div>
         </Menu.Item>
         <Menu.Item
@@ -66,7 +66,7 @@ export const SemanticSidebar = ({
               src={publicImageFolder + "/atlassianKitLogo.png"}
               height={30}
             />
-            <div> Atlassian Kit</div>
+            <div>Atlassian Kit</div>
           </div>
         </Menu.Item>
       </Sidebar>
