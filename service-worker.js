@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/carstat/precache-manifest.3e9cbff3b39cadb5064efc4c16159566.js"
+  "/carstat/precache-manifest.f5b706c1dd6ec20701c94ebcfb5feeca.js"
 );
 
 self.addEventListener('message', (event) => {

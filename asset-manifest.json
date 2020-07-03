@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/carstat/static/css/main.edb38e63.chunk.css",
-    "main.js": "/carstat/static/js/main.a4979d7e.chunk.js",
-    "main.js.map": "/carstat/static/js/main.a4979d7e.chunk.js.map",
+    "main.js": "/carstat/static/js/main.60fb6a01.chunk.js",
+    "main.js.map": "/carstat/static/js/main.60fb6a01.chunk.js.map",
     "runtime-main.js": "/carstat/static/js/runtime-main.8d0b6907.js",
     "runtime-main.js.map": "/carstat/static/js/runtime-main.8d0b6907.js.map",
     "static/css/2.14e15c68.chunk.css": "/carstat/static/css/2.14e15c68.chunk.css",
-    "static/js/2.cf3628fe.chunk.js": "/carstat/static/js/2.cf3628fe.chunk.js",
-    "static/js/2.cf3628fe.chunk.js.map": "/carstat/static/js/2.cf3628fe.chunk.js.map",
+    "static/js/2.2811691e.chunk.js": "/carstat/static/js/2.2811691e.chunk.js",
+    "static/js/2.2811691e.chunk.js.map": "/carstat/static/js/2.2811691e.chunk.js.map",
     "index.html": "/carstat/index.html",
-    "precache-manifest.3e9cbff3b39cadb5064efc4c16159566.js": "/carstat/precache-manifest.3e9cbff3b39cadb5064efc4c16159566.js",
+    "precache-manifest.f5b706c1dd6ec20701c94ebcfb5feeca.js": "/carstat/precache-manifest.f5b706c1dd6ec20701c94ebcfb5feeca.js",
     "service-worker.js": "/carstat/service-worker.js",
     "static/css/2.14e15c68.chunk.css.map": "/carstat/static/css/2.14e15c68.chunk.css.map",
     "static/css/main.edb38e63.chunk.css.map": "/carstat/static/css/main.edb38e63.chunk.css.map",
-    "static/js/2.cf3628fe.chunk.js.LICENSE.txt": "/carstat/static/js/2.cf3628fe.chunk.js.LICENSE.txt"
+    "static/js/2.2811691e.chunk.js.LICENSE.txt": "/carstat/static/js/2.2811691e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8d0b6907.js",
     "static/css/2.14e15c68.chunk.css",
-    "static/js/2.cf3628fe.chunk.js",
+    "static/js/2.2811691e.chunk.js",
     "static/css/main.edb38e63.chunk.css",
-    "static/js/main.a4979d7e.chunk.js"
+    "static/js/main.60fb6a01.chunk.js"
   ]
 }
