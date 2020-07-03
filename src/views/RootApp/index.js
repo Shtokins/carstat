@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { MainChartBlock } from "../MainChartBlock";
 import { UIContext } from "../../context/ui/UIContext";
-import { UISider } from "./UISider";
+import { UISider } from "./UIs/UISider";
 
 export const RootApp = () => {
   const [collapsed, setCollapsed] = useState(false);

@@ -1,6 +1,7 @@
 import React from "react";
 import { AntdSider } from "./AntdSider";
 import { SemanticSidebar } from "./SemanticSidebar";
+import { MaterialDrawer } from "./MaterialDrawer";
 
 export const UISider = ({
   collapsed,
@@ -32,6 +33,17 @@ export const UISider = ({
         >
           {children}
         </SemanticSidebar>
+      );
+    case "material":
+      return (
+        <MaterialDrawer
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+          uiName={uiName}
+          setUI={setUI}
+        >
+          {children}
+        </MaterialDrawer>
       );
     default:
       return antdSider;
