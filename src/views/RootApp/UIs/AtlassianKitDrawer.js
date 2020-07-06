@@ -1,7 +1,12 @@
 import React from "react";
-import Button from "@atlaskit/button";
-import { MenuGroup, Section, ButtonItem } from "@atlaskit/menu";
+import { MenuGroup, ButtonItem as MenuButtonItem } from "@atlaskit/menu";
 import { colors } from "@atlaskit/theme";
+import MenuExpandIcon from "@atlaskit/icon/glyph/menu-expand";
+import {
+  SideNavigation,
+  NestableNavigationContent,
+  ButtonItem
+} from "@atlaskit/side-navigation";
 import Drawer from "@atlaskit/drawer";
 // eslint-disable-next-line no-undef
 const publicImageFolder = process.env.PUBLIC_URL + "/images";
@@ -13,81 +18,130 @@ export const AtlassianKitDrawer = ({
   uiName,
   setUI
 }) => {
-  console.log("collapsed: ", collapsed);
   return (
-    <div css={{ padding: "2rem" }}>
-      <Drawer
-        onClose={() => setCollapsed(true)}
-        isOpen={!collapsed}
-        width="narrow"
-      >
-        <div
-          style={{
-            color: colors.N800,
-            border: `1px solid ${colors.N40}`,
-            boxShadow:
-              "0px 4px 8px rgba(9, 30, 66, 0.25), 0px 0px 1px rgba(9, 30, 66, 0.31)",
-            borderRadius: 4,
-            maxWidth: 320,
-            margin: "16px auto"
-          }}
+    <div style={{ display: "flex", height: "100vh" }} className="ak-sider">
+      <SideNavigation label="project">
+        <NestableNavigationContent>
+          <ButtonItem
+            onClick={() => setUI("antd")}
+            isSelected={uiName === "antd"}
+          >
+            <div className="button-content">
+              <img
+                alt=""
+                src={publicImageFolder + "/antdLogo.png"}
+                height={30}
+              />
+            </div>
+          </ButtonItem>
+          <ButtonItem
+            onClick={() => setUI("semantic")}
+            isSelected={uiName === "semantic"}
+          >
+            <div className="button-content">
+              <img
+                alt=""
+                src={publicImageFolder + "/suiLogo.png"}
+                height={30}
+              />
+            </div>
+          </ButtonItem>
+          <ButtonItem
+            onClick={() => setUI("material")}
+            isSelected={uiName === "material"}
+          >
+            <div className="button-content">
+              <img
+                alt=""
+                src={publicImageFolder + "/muiLogo.png"}
+                height={30}
+              />
+            </div>
+          </ButtonItem>
+          <ButtonItem
+            onClick={() => setUI("atlassian")}
+            isSelected={uiName === "atlassian"}
+          >
+            <div className="button-content">
+              <img
+                alt=""
+                src={publicImageFolder + "/atlassianKitLogo.png"}
+                height={30}
+              />{" "}
+            </div>
+          </ButtonItem>
+
+          <ButtonItem onClick={() => setCollapsed(false)}>
+            <MenuExpandIcon />
+          </ButtonItem>
+        </NestableNavigationContent>
+        <Drawer
+          onClose={() => setCollapsed(true)}
+          isOpen={!collapsed}
+          width="narrow"
         >
-          <MenuGroup>
-            <ButtonItem
-              onClick={() => setUI("antd")}
-              isSelected={uiName === "antd"}
-              iconBefore={
-                <img
-                  alt=""
-                  src={publicImageFolder + "/antdLogo.png"}
-                  height={30}
-                />
-              }
-            >
-              Ant Design
-            </ButtonItem>
-            <ButtonItem
-              onClick={() => setUI("semantic")}
-              isSelected={uiName === "semantic"}
-              iconBefore={
-                <img
-                  alt=""
-                  src={publicImageFolder + "/suiLogo.png"}
-                  height={30}
-                />
-              }
-            >
-              Semantic UI
-            </ButtonItem>
-            <ButtonItem
-              onClick={() => setUI("material")}
-              isSelected={uiName === "material"}
-              iconBefore={
-                <img
-                  alt=""
-                  src={publicImageFolder + "/muiLogo.png"}
-                  height={30}
-                />
-              }
-            >
-              Material UI
-            </ButtonItem>
-            <ButtonItem
-              onClick={() => setUI("atlassian")}
-              isSelected={uiName === "atlassian"}
-              iconBefore={
-                <img
-                  alt=""
-                  src={publicImageFolder + "/atlassianKitLogo.png"}
-                  height={30}
-                />
-              }
-            >
-              Atlassian Kit
-            </ButtonItem>
-          </MenuGroup>
-        </div>
-      </Drawer>
+          <div
+            style={{
+              color: colors.N800
+            }}
+          >
+            <MenuGroup>
+              <MenuButtonItem
+                onClick={() => setUI("antd")}
+                isSelected={uiName === "antd"}
+                iconBefore={
+                  <img
+                    alt=""
+                    src={publicImageFolder + "/antdLogo.png"}
+                    height={30}
+                  />
+                }
+              >
+                Ant Design
+              </MenuButtonItem>
+              <MenuButtonItem
+                onClick={() => setUI("semantic")}
+                isSelected={uiName === "semantic"}
+                iconBefore={
+                  <img
+                    alt=""
+                    src={publicImageFolder + "/suiLogo.png"}
+                    height={30}
+                  />
+                }
+              >
+                Semantic UI
+              </MenuButtonItem>
+              <MenuButtonItem
+                onClick={() => setUI("material")}
+                isSelected={uiName === "material"}
+                iconBefore={
+                  <img
+                    alt=""
+                    src={publicImageFolder + "/muiLogo.png"}
+                    height={30}
+                  />
+                }
+              >
+                Material UI
+              </MenuButtonItem>
+              <MenuButtonItem
+                onClick={() => setUI("atlassian")}
+                isSelected={uiName === "atlassian"}
+                iconBefore={
+                  <img
+                    alt=""
+                    src={publicImageFolder + "/atlassianKitLogo.png"}
+                    height={30}
+                  />
+                }
+              >
+                Atlassian Kit
+              </MenuButtonItem>
+            </MenuGroup>
+          </div>
+        </Drawer>
+      </SideNavigation>
       {children}
     </div>
   );

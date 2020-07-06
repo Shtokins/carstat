@@ -11,7 +11,6 @@ export const SemanticSidebar = ({
   uiName,
   setUI
 }) => {
-  console.log("collapsed: ", collapsed);
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar

@@ -22,7 +22,6 @@ const ControlPanel = ({
   const { uiName } = useContext(UIContext);
   const yearsOptions = getYearsOptions(carsApiState);
   const setSetting = (setting, value) => {
-    console.log("value: ", value);
     const changes = { [setting]: value };
     if (setting === "kpiPrimary") {
       changes.kpiAdditional = value === "sales" ? "revenue" : "sales";

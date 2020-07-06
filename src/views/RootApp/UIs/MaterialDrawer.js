@@ -91,9 +91,9 @@ export const MaterialDrawer = ({
   const classes = useStyles();
   const theme = useTheme();
 
-  const handleDrawerOpen = () => {
-    setCollapsed(false);
-  };
+  // const handleDrawerOpen = () => {
+  //   setCollapsed(false);
+  // };
 
   const handleDrawerClose = () => {
     setCollapsed(true);
@@ -102,7 +102,7 @@ export const MaterialDrawer = ({
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      {/* <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: !collapsed
@@ -124,7 +124,7 @@ export const MaterialDrawer = ({
             Material Appbar
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -139,12 +139,8 @@ export const MaterialDrawer = ({
         }}
       >
         <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+          <IconButton onClick={() => setCollapsed(!collapsed)}>
+            {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
